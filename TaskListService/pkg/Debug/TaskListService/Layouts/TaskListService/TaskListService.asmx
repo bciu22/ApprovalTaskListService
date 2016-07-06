@@ -1,0 +1,1 @@
+﻿<%@ WebService Class="TaskListService.TaskListService, TaskListService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f8b8fcb7862e65d3" %>

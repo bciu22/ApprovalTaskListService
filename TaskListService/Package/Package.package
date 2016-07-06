@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="e225f4ae-d65c-4c89-9290-b378673fa184" solutionId="e225f4ae-d65c-4c89-9290-b378673fa184" resetWebServer="false" name="TaskListService" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <projectItems>
+    <projectItemReference itemId="a40c81af-61dc-45eb-bfae-a0ffbaf2e570" />
+  </projectItems>
+</package>
