@@ -85,7 +85,7 @@ namespace TaskListService
                         }
                     }
                     results.EndLoadData();
-
+                    results.Columns.Remove("ExtendedProperties");
                     DataSet resultSet = new DataSet();
                     resultSet.Tables.Add(results);
                     return resultSet;
