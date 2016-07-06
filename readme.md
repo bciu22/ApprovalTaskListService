@@ -9,4 +9,6 @@ Since the WorkflowItemID column of a task list is hidden, it cannot be queried b
 
 This method accepts TaskListName and WorkflowItemID as parameters
 
+This method returns XML with each approval object.
+
 This method can be used as a SOAP call from within InfoPath to generate a tabular list of all approvals pertaining to a particular form
