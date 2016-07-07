@@ -7,6 +7,7 @@ using System.Web.Services;
 using System.Diagnostics;
 using System.Data;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace TaskListService
 {
@@ -74,19 +75,29 @@ namespace TaskListService
                         foreach (DataRow row in results.Rows)
                         {
                             string pattern = @"ows_FieldName_Comments='(.*?)'";
-                            string extendedProperties = row["ExtendedProperties"].ToString();
+                            string extendedProperties = HttpUtility.HtmlDecode(row["ExtendedProperties"].ToString());
                             MatchCollection comments = Regex.Matches(extendedProperties, pattern);
                             if (comments.Count > 0)
                             {
+
                                 row["Comments"] = comments[0].Groups[1].Value;
                             }
 
                             pattern = @"ows_TaskStatus='(.*?)'";
-                            extendedProperties = row["ExtendedProperties"].ToString();
                             MatchCollection taskStatus = Regex.Matches(extendedProperties, pattern);
+                            pattern = @"ows_FieldName_DelegateTo='(.*)<pc:DisplayName>(.*)</pc:DisplayName>";
+                            MatchCollection delegateTo = Regex.Matches(extendedProperties, pattern);
                             if (taskStatus.Count > 0)
                             {
-                                row["TaskStatus"] = taskStatus[0].Groups[1].Value;
+                                if(delegateTo.Count > 0)
+                                {
+                                    row["TaskStatus"] = "Delegate: " + delegateTo[0].Groups[2].Value;
+                                }
+                                else
+                                {
+                                    row["TaskStatus"] = taskStatus[0].Groups[1].Value;
+                                }
+                               
                             }
                         }
                         results.EndLoadData();
