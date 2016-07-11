@@ -14,11 +14,22 @@ namespace TaskListService
     [WebService(Namespace = "http://bucksiu.org/webservices/TaskListWebService")]
     public class TaskListService : WebService
     {
+
+        [WebMethod]
+        public DataSet GetRelatedTasks(string TaskListName, int taskID)
+        {
+            //gets approvals related to the same workflowitemid for a supplied approval id
+            SPWeb thisSite = SPContext.Current.Site.OpenWeb();
+            SPList TaskList = thisSite.Lists.TryGetList(TaskListName);
+            SPListItem item = TaskList.GetItemById(taskID);
+            string WorkflowItemId = item["WorkflowItemId"].ToString();
+            return GetApprovalTasks(TaskListName, int.Parse(WorkflowItemId));
+        }
         [WebMethod]
         public DataSet GetApprovalTasks(string TaskListName, int WorkflowItemID)  
         {
             //gets workflow items for a list in the current site's context for "well-behaved" SOAP clients.
-            string subsiteName =  SPContext.Current.Site.PortalName;
+            string subsiteName = SPContext.Current.Site.OpenWeb().Url;
             return GetSiteApprovalTasks(subsiteName, TaskListName, WorkflowItemID);
         }
         [WebMethod]
