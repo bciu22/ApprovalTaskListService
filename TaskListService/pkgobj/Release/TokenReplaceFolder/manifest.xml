@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="e225f4ae-d65c-4c89-9290-b378673fa184" SharePointProductVersion="14.0">
+  <Assemblies>
+    <Assembly Location="TaskListService.dll" DeploymentTarget="GlobalAssemblyCache" />
+  </Assemblies>
+  <TemplateFiles>
+    <TemplateFile Location="Layouts\TaskListService\TaskListService.asmx" />
+  </TemplateFiles>
+</Solution>
